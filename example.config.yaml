@@ -1,0 +1,21 @@
+adguardhome:
+  host: "https://adguard.com"
+  username: aaaa
+  password: aaaa
+  timeout: 5
+dns:
+  servers:
+    - tls://1dot1dot1dot1.cloudflare-mdns.com
+    - https://dns.cloudflare.com/dns-query
+  ipv4: true
+  ipv6: true
+  insecure_skip_verify: false
+  interval: 3600
+  timeout: 5
+log:
+  path: "/var/log"
+  level: debug
+  develop: true
+domain:
+  - "registry-1.docker.io"
+  - "github.com"

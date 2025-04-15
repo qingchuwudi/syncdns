@@ -1,0 +1,41 @@
+default_language_version:
+  python: python3
+default_install_hook_types:
+  - pre-commit
+repos:
+  - hooks:
+      - id: check-added-large-files
+      - id: check-json
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-merge-conflict
+      - id: check-yaml
+        args:
+          - --allow-multiple-documents
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+        description: Forces to replace line ending by the UNIX 'lf' character.
+    repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+  - repo: https://github.com/qingchuwudi/pre-commit-golang
+    rev: v0.5.3
+    hooks:
+      - id: go-mod-tidy
+      - id: go-fmt
+      - id: goimports-reviser #使用 goimports-reviser 格式化代码
+        args:
+        - "-rm-unused"
+        - "-format"
+        - "-recursive"
+        #   - "-set-alias"
+  - hooks:
+    - id: golangci-lint
+      args: [./..., "--timeout=10m"]
+    repo: https://github.com/golangci/golangci-lint
+    rev: v2.1.1
+  - hooks:
+      - id: commitizen
+        stages:
+          - commit-msg
+    repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.2.2

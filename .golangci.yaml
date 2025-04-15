@@ -1,0 +1,57 @@
+version: "2"
+run:
+  allow-parallel-runners: true
+linters:
+  enable:
+    - asasalint
+    - dupl
+    - durationcheck
+    - funlen
+    - gocognit
+    - goconst
+    - gocritic
+    - lll
+    - revive
+    - varnamelen
+  settings:
+    forbidigo:
+      forbid:
+        - pattern: ^print|println$
+    funlen:
+      lines: 200
+      statements: 160
+    goconst:
+      min-len: 5
+    lll:
+      line-length: 180
+      tab-width: 4
+    revive:
+      rules:
+        - name: redefines-builtin-id
+          disabled: true
+    varnamelen:
+      max-distance: 20
+      min-name-length: 1
+      ignore-type-assert-ok: true
+      ignore-map-index-ok: true
+      ignore-chan-recv-ok: true
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofmt
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
